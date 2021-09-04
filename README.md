@@ -1,2 +1,2 @@
 # 2chat
-Chat app for communication between 2 persons
+Chat application developed using socket.io and vanilla js
