@@ -4,6 +4,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { deepPurple, deepOrange, grey } from "@mui/material/colors";
 import Name from "../name/name";
 import Layout from "../layout/layout";
+import ChatArea from "../chat/chatArea";
 
 class App extends React.Component {
 
@@ -21,28 +22,6 @@ class App extends React.Component {
     Message input
     Sender logout
 */
-
-/*<Grid
-    container
-    direction="row"
-    justifyContent="center"
-    alignItems="center"
-    spacing={1}
-    sx={{
-        background: `${misc}`
-    }}>
-    <Grid item xs={2}>
-    </Grid>
-    <Grid item xs={8}>
-        <Box
-            sx={{
-                margin: "5vh 0",
-                width: "100%",
-                height: "90vh",
-                background: "white",
-                boxShadow: "2px 2px 5px lightgray"
-            }}>*/
-
 
 class ChatPage extends React.Component {
 
@@ -74,7 +53,7 @@ class ChatPage extends React.Component {
                         <Box sx={{
                             height: "70vh"
                         }}>
-                            <Box></Box>
+                            <ChatArea />
                         </Box>
                     </Grid>
                 </Grid>
