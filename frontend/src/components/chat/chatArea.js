@@ -1,50 +1,67 @@
 import React from "react";
-import { Card, CardHeader, Avatar, Box, Paper, Typography } from "@mui/material";
-import logo from "../../cartoon-dev.jpg";
-import colorScheme from "../../constants/constant";
+import { styled } from '@mui/material/styles';
+import Button from "@mui/material/Button";
+import SendIcon from '@mui/icons-material/Send';
+import Avatar from "@mui/material/Avatar";
+import { Box, Typography, TextField } from "@mui/material";
+import { green } from "@mui/material/colors";
+
+const color = green['A200'];
 
 class ChatArea extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
-            sender: "",
-            receiver: "",
-            messageList: [{ sentBy: "Kanav", message: "Hey" },
+            messages: [{ sentBy: "Kunal", message: "Hey" },
+            { sentBy: "Kanav", message: "Hi" },
+            { sentBy: "Kunal", message: "Hey there how are you i am fine thankyou Hey there how are you i am fine thankyou" },
+            { sentBy: "Kanav", message: "Hi" },
+            { sentBy: "Kunal", message: "Hey" },
+            { sentBy: "Kanav", message: "Hi" },
             { sentBy: "Kunal", message: "Hi" },
-            { sentBy: "Kanav", message: "How you doin" }]
-        }
+            { sentBy: "Kanav", message: "Hey" },
+            { sentBy: "Kanav", message: "Hi" },
+            { sentBy: "Kunal", message: "Hey there how are you i am fine thankyou Hey there how are you i am fine thankyou" },
+            { sentBy: "Kanav", message: "Hi" },
+            { sentBy: "Kanav", message: "Hi" },
+            { sentBy: "Kunal", message: "Hey there how are you i am fine thankyou Hey there how are you i am fine thankyou" },
+            { sentBy: "Kanav", message: "Hi" },
+            { sentBy: "Kunal", message: "Hey" }]
+        };
     }
+
     render() {
         return (
-            <>
-                {this.state.messageList.map((messageObj, i) => {
-                    return (
-                        <div key={`message-${i}`} style={{ position: "relative", left: `${messageObj.sentBy === "Kanav" ? "45%" : "0"}`, width: '50%' }}>
-                            <Box sx={{
-                                display: 'flex', p: 1,
-                                bgcolor: 'background.paper',
-                                justifyContent: `${messageObj.sentBy === "Kanav" ? "flex-end" : "flex-start"}`
-                            }}>
-                                {messageObj.sentBy !== "Kanav" ? <Avatar alt="logo" src={logo} /> : <></>}
-                                <Box sx={{
-                                    display: 'flex',
-                                    p: 1,
-                                    bgcolor: `${colorScheme.primary}`,
-                                    color: 'white',
-                                    borderRadius: "0.5rem",
-                                    margin: `${messageObj.sentBy === "Kanav" ? "0px 1rem 0px" : "0px 0px 0px 1rem"}`
-                                }}>
-                                    {messageObj.message}
-                                </Box>
-                                {messageObj.sentBy === "Kanav" ? <Avatar alt="logo" src={logo} /> : <></>}
-                            </Box>
-                        </div>
-                    )
-                }
-                )
-                }
-            </>
-        );
+            <Box sx={{
+                height: "65vh",
+                overflowY: "auto",
+                margin: "1rem",
+            }}>
+                {this.state.messages.map((messageObj) => {
+                    return (<Box sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        position: "relative",
+                        marginBottom: "1rem",
+                        justifyContent: `${messageObj.sentBy === "Kunal" ? "flex-start" : "flex-end"}`,
+                        width: "95%",
+                        padding: "0.2rem 0.5rem"
+                    }}>
+                        <Typography sx={{
+                            color: "white",
+                            backgroundColor: `${color}`,
+                            borderRadius: "1rem",
+                            minWidth: "10%",
+                            maxWidth: "50%",
+                            padding: "0.5rem",
+                            display: "flex",
+                            justifyContent: `${messageObj.sentBy === "Kunal" ? "flex-start" : "flex-end"}`,
+                        }}><strong>{messageObj.message}
+                            </strong></Typography>
+                    </Box>)
+                })}
+            </Box>
+        )
     }
 }
 

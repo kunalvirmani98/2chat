@@ -5,6 +5,7 @@ import { deepPurple, deepOrange, grey } from "@mui/material/colors";
 import Name from "../name/name";
 import Layout from "../layout/layout";
 import ChatArea from "../chat/chatArea";
+import InputMessage from "../chat/inputMessage";
 
 class App extends React.Component {
 
@@ -50,11 +51,8 @@ class ChatPage extends React.Component {
                         <Name username="Rahul Syal" />
                     </Grid>
                     <Grid item xs={9}>
-                        <Box sx={{
-                            height: "70vh"
-                        }}>
-                            <ChatArea />
-                        </Box>
+                        <ChatArea />
+                        <InputMessage />
                     </Grid>
                 </Grid>
 
