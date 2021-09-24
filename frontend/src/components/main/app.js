@@ -6,6 +6,7 @@ import Name from "../name/name";
 import Layout from "../layout/layout";
 import ChatArea from "../chat/chatArea";
 import InputMessage from "../chat/inputMessage";
+import FriendList from "../chat/friendList";
 
 class App extends React.Component {
 
@@ -47,8 +48,7 @@ class ChatPage extends React.Component {
                     container
                     spacing={0}>
                     <Grid item xs={3}>
-                        <Name username="Ansh Gujral" />
-                        <Name username="Rahul Syal" />
+                        <FriendList />
                     </Grid>
                     <Grid item xs={9}>
                         <ChatArea />

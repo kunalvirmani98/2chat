@@ -1,7 +1,7 @@
-import { deepPurple, deepOrange, grey } from "@mui/material/colors";
+import { green, deepPurple, deepOrange, grey } from "@mui/material/colors";
 
 const colorScheme = {
-    primary: deepPurple[900],
+    primary: green['A200'],
     secondary: deepOrange[500],
     misc: grey[100],
     misc2: grey[50]
