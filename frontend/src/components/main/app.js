@@ -7,6 +7,7 @@ import Layout from "../layout/layout";
 import ChatArea from "../chat/chatArea";
 import InputMessage from "../chat/inputMessage";
 import FriendList from "../chat/friendList";
+import io from "socket.io-client";
 
 class App extends React.Component {
 
@@ -17,15 +18,21 @@ class App extends React.Component {
     }
 }
 
-/*
-    Name of sender + detail
-    Name of recipient + messages sent
-    Name of all recipiends
-    Message input
-    Sender logout
-*/
-
 class ChatPage extends React.Component {
+
+    constructor() {
+        super();
+        this.state = {
+            activeSocket: null
+        }
+    }
+    componentDidMount() {
+        const socket = io('ws://localhost:8080');
+        if (socket !== null) {
+            console.log("Socket connection established");
+            this.setState({ activeSocket: socket });
+        }
+    }
 
     render() {
         const primary = deepPurple[900];
@@ -51,11 +58,10 @@ class ChatPage extends React.Component {
                         <FriendList />
                     </Grid>
                     <Grid item xs={9}>
-                        <ChatArea />
-                        <InputMessage />
+                        <ChatArea activeSocket={this.state.activeSocket} />
+                        <InputMessage activeSocket={this.state.activeSocket} />
                     </Grid>
                 </Grid>
-
             </Layout >
         )
     }

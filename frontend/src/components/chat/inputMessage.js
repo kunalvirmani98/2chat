@@ -32,6 +32,26 @@ const CssTextField = styled(TextField)({
 });
 
 class InputMessage extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            inputMessage: null,
+        }
+    }
+
+    socket = this.props.activeSocket;
+
+    handleInputMessage = (e) => {
+        this.setState({ inputMessage: e.target.value });
+        console.log(e.target);
+    }
+
+    sendMessage = (e) => {
+        e.preventDefault();
+        let activeSocket = this.props.activeSocket;
+        activeSocket.emit('message', { sentBy: "Kunal", message: this.state.inputMessage });
+    }
+
     render() {
         return (
             <Box sx={{
@@ -44,12 +64,15 @@ class InputMessage extends React.Component {
                     label="Message"
                     multiline
                     maxRows={3}
+                    onChange={this.handleInputMessage}
+                    value={this.state.inputMessage}
                 />
                 <Button
                     sx={{
                         backgroundColor: `${green['A200']}`
                     }}
                     variant="contained"
+                    onClick={this.sendMessage}
                     endIcon={<SendIcon />}>
                     Send
                 </Button>

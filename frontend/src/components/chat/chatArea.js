@@ -26,10 +26,26 @@ class ChatArea extends React.Component {
             { sentBy: "Kanav", message: "Hi" },
             { sentBy: "Kunal", message: "Hey there how are you i am fine thankyou Hey there how are you i am fine thankyou" },
             { sentBy: "Kanav", message: "Hi" },
-            { sentBy: "Kunal", message: "Hey" }]
+            { sentBy: "Kunal", message: "Hey" }],
+            activeSocket: null,
         };
     }
 
+    componentDidMount() {
+    }
+
+    componentDidUpdate() {
+        console.log("Component did update chatarea");
+        let activeSocket = this.props.activeSocket;
+        let messages = this.state.messages;
+        if (activeSocket != null) {
+            activeSocket.on('message', text => {
+                this.setState({ messages: [...messages, text] })
+            })
+        }
+    }
+
+    // socket.emit('message', text);
     render() {
         return (
             <Box sx={{
