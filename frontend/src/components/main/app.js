@@ -10,7 +10,6 @@ import FriendList from "../chat/friendList";
 import io from "socket.io-client";
 
 class App extends React.Component {
-
     render() {
         return (
             <ChatPage />
@@ -23,15 +22,46 @@ class ChatPage extends React.Component {
     constructor() {
         super();
         this.state = {
-            activeSocket: null
+            activeSocket: null,
+            messages: [{ sentBy: "Kunal", message: "Hey" },
+            { sentBy: "Kanav", message: "Hi" },
+            { sentBy: "Kunal", message: "Hey there how are you i am fine thankyou Hey there how are you i am fine thankyou" },
+            { sentBy: "Kanav", message: "Hi" },
+            { sentBy: "Kunal", message: "Hey" },
+            { sentBy: "Kanav", message: "Hi" },
+            { sentBy: "Kunal", message: "Hi" },
+            { sentBy: "Kanav", message: "Hey" },
+            { sentBy: "Kanav", message: "Hi" },
+            { sentBy: "Kunal", message: "Hey there how are you i am fine thankyou Hey there how are you i am fine thankyou" },
+            { sentBy: "Kanav", message: "Hi" },
+            { sentBy: "Kanav", message: "Hi" },
+            { sentBy: "Kunal", message: "Hey there how are you i am fine thankyou Hey there how are you i am fine thankyou" },
+            { sentBy: "Kanav", message: "Hi" },
+            { sentBy: "Kunal", message: "Hey" }]
         }
     }
+
     componentDidMount() {
         const socket = io('ws://localhost:8080');
         if (socket !== null) {
             console.log("Socket connection established");
             this.setState({ activeSocket: socket });
         }
+    }
+
+    componentDidUpdate() {
+        let activeSocket = this.state.activeSocket;
+        let messages = this.state.messages;
+        if (activeSocket != null) {
+            activeSocket.on('message', (messageObj) => {
+                this.setState({ messages: [...messages, messageObj] })
+            })
+        }
+    }
+
+    handleIncomingMessages = (e, incomingMessage) => {
+        let messages = this.state.messages;
+        this.setState({ messages: [...messages, incomingMessage] })
     }
 
     render() {
@@ -58,8 +88,8 @@ class ChatPage extends React.Component {
                         <FriendList />
                     </Grid>
                     <Grid item xs={9}>
-                        <ChatArea activeSocket={this.state.activeSocket} />
-                        <InputMessage activeSocket={this.state.activeSocket} />
+                        <ChatArea activeSocket={this.state.activeSocket} messages={this.state.messages} handleIncomingMessages={this.handleIncomingMessages} />
+                        <InputMessage activeSocket={this.state.activeSocket} handleIncomingMessages={this.handleIncomingMessages} />
                     </Grid>
                 </Grid>
             </Layout >

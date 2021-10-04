@@ -12,35 +12,28 @@ class ChatArea extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            messages: [{ sentBy: "Kunal", message: "Hey" },
-            { sentBy: "Kanav", message: "Hi" },
-            { sentBy: "Kunal", message: "Hey there how are you i am fine thankyou Hey there how are you i am fine thankyou" },
-            { sentBy: "Kanav", message: "Hi" },
-            { sentBy: "Kunal", message: "Hey" },
-            { sentBy: "Kanav", message: "Hi" },
-            { sentBy: "Kunal", message: "Hi" },
-            { sentBy: "Kanav", message: "Hey" },
-            { sentBy: "Kanav", message: "Hi" },
-            { sentBy: "Kunal", message: "Hey there how are you i am fine thankyou Hey there how are you i am fine thankyou" },
-            { sentBy: "Kanav", message: "Hi" },
-            { sentBy: "Kanav", message: "Hi" },
-            { sentBy: "Kunal", message: "Hey there how are you i am fine thankyou Hey there how are you i am fine thankyou" },
-            { sentBy: "Kanav", message: "Hi" },
-            { sentBy: "Kunal", message: "Hey" }],
-            activeSocket: null,
         };
+        this.myRef = React.createRef();
     }
 
     componentDidMount() {
+        if (this.myRef && this.myRef.current) {
+            const element = this.myRef.current;
+            element.scroll({
+                top: element.scrollHeight,
+                left: 0,
+                behavior: "smooth"
+            })
+        }
     }
 
     componentDidUpdate() {
-        console.log("Component did update chatarea");
-        let activeSocket = this.props.activeSocket;
-        let messages = this.state.messages;
-        if (activeSocket != null) {
-            activeSocket.on('message', text => {
-                this.setState({ messages: [...messages, text] })
+        if (this.myRef && this.myRef.current) {
+            const element = this.myRef.current;
+            element.scroll({
+                top: element.scrollHeight,
+                left: 0,
+                behavior: "smooth"
             })
         }
     }
@@ -52,8 +45,8 @@ class ChatArea extends React.Component {
                 height: "65vh",
                 overflowY: "auto",
                 margin: "1rem",
-            }}>
-                {this.state.messages.map((messageObj) => {
+            }} ref={this.myRef}>
+                {this.props.messages.map((messageObj) => {
                     return (<Box sx={{
                         display: "flex",
                         alignItems: "center",

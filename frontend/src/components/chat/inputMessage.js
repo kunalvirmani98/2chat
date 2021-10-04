@@ -47,8 +47,13 @@ class InputMessage extends React.Component {
     }
 
     sendMessage = (e) => {
-        e.preventDefault();
+        console.log("Sending message ...");
         let activeSocket = this.props.activeSocket;
+        let messageObj = {
+            sentBy: "Kunal",
+            message: this.state.inputMessage
+        }
+        this.props.handleIncomingMessages(e, messageObj);
         activeSocket.emit('message', { sentBy: "Kunal", message: this.state.inputMessage });
     }
 
