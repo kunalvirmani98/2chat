@@ -1,6 +1,5 @@
 import React from "react";
 import { Box, Grid } from "@mui/material";
-import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { deepPurple, deepOrange, grey } from "@mui/material/colors";
 import Name from "../name/name";
 import Layout from "../layout/layout";
@@ -10,14 +9,6 @@ import FriendList from "../chat/friendList";
 import io from "socket.io-client";
 
 class App extends React.Component {
-    render() {
-        return (
-            <ChatPage />
-        )
-    }
-}
-
-class ChatPage extends React.Component {
 
     constructor() {
         super();
@@ -65,9 +56,6 @@ class ChatPage extends React.Component {
     }
 
     render() {
-        const primary = deepPurple[900];
-        const secondary = deepOrange[500];
-        const misc = grey[100];
         const misc2 = grey[50];
         return (
             < Layout >
