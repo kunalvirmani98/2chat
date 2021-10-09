@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './components/main/app';
+import Layout from './components/layout/layout';
 import reportWebVitals from './reportWebVitals';
 import colorScheme from "./constants/constant";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Layout />
   </React.StrictMode>,
   document.getElementById('root')
 );

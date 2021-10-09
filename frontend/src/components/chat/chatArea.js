@@ -52,7 +52,7 @@ class ChatArea extends React.Component {
                         alignItems: "center",
                         position: "relative",
                         marginBottom: "1rem",
-                        justifyContent: `${messageObj.sentBy === "Kunal" ? "flex-start" : "flex-end"}`,
+                        justifyContent: `${messageObj.sentBy === this.props.username ? "flex-start" : "flex-end"}`,
                         width: "95%",
                         padding: "0.2rem 0.5rem"
                     }}>
@@ -64,7 +64,7 @@ class ChatArea extends React.Component {
                             maxWidth: "50%",
                             padding: "0.5rem",
                             display: "flex",
-                            justifyContent: `${messageObj.sentBy === "Kunal" ? "flex-start" : "flex-end"}`,
+                            justifyContent: `${messageObj.sentBy === this.props.username ? "flex-start" : "flex-end"}`,
                         }}><strong>{messageObj.message}
                             </strong></Typography>
                     </Box>)

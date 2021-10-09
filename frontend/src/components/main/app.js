@@ -14,21 +14,21 @@ class App extends React.Component {
         super();
         this.state = {
             activeSocket: null,
-            messages: [{ sentBy: "Kunal", message: "Hey" },
-            { sentBy: "Kanav", message: "Hi" },
-            { sentBy: "Kunal", message: "Hey there how are you i am fine thankyou Hey there how are you i am fine thankyou" },
-            { sentBy: "Kanav", message: "Hi" },
-            { sentBy: "Kunal", message: "Hey" },
-            { sentBy: "Kanav", message: "Hi" },
-            { sentBy: "Kunal", message: "Hi" },
-            { sentBy: "Kanav", message: "Hey" },
-            { sentBy: "Kanav", message: "Hi" },
-            { sentBy: "Kunal", message: "Hey there how are you i am fine thankyou Hey there how are you i am fine thankyou" },
-            { sentBy: "Kanav", message: "Hi" },
-            { sentBy: "Kanav", message: "Hi" },
-            { sentBy: "Kunal", message: "Hey there how are you i am fine thankyou Hey there how are you i am fine thankyou" },
-            { sentBy: "Kanav", message: "Hi" },
-            { sentBy: "Kunal", message: "Hey" }]
+            messages: [{ sentBy: "kunal", message: "Hey" },
+            { sentBy: "kanav", message: "Hi" },
+            { sentBy: "kunal", message: "Hey there how are you i am fine thankyou Hey there how are you i am fine thankyou" },
+            { sentBy: "kanav", message: "Hi" },
+            { sentBy: "kunal", message: "Hey" },
+            { sentBy: "kanav", message: "Hi" },
+            { sentBy: "kunal", message: "Hi" },
+            { sentBy: "kanav", message: "Hey" },
+            { sentBy: "kanav", message: "Hi" },
+            { sentBy: "kunal", message: "Hey there how are you i am fine thankyou Hey there how are you i am fine thankyou" },
+            { sentBy: "kanav", message: "Hi" },
+            { sentBy: "kanav", message: "Hi" },
+            { sentBy: "kunal", message: "Hey there how are you i am fine thankyou Hey there how are you i am fine thankyou" },
+            { sentBy: "kanav", message: "Hi" },
+            { sentBy: "kunal", message: "Hey" }]
         }
     }
 
@@ -58,29 +58,53 @@ class App extends React.Component {
     render() {
         const misc2 = grey[50];
         return (
-            < Layout >
-                <Grid
-                    container
-                    spacing={0}>
-                    <Grid item xs={3}><Name username="Kunal Virmani" /></Grid>
-                    <Grid
-                        item xs={9}
+            <Grid
+                container
+                //direction="row"
+                //justifyContent="center"
+                //alignItems="center"
+                spacing={1}
+                sx={{
+                    background: `${grey}`
+                }}>
+                <Grid item xs={2}>
+                </Grid>
+                <Grid item xs={8}>
+                    <Box
                         sx={{
-                            background: `${misc2}`
-                        }}><Name username="Kanav Vashisht" /></Grid>
+                            margin: "5vh 0",
+                            width: "100%",
+                            height: "90vh",
+                            background: "white",
+                            boxShadow: "2px 2px 5px lightgray"
+                        }}>
+                        <Grid
+                            container
+                            spacing={0}>
+                            <Grid item xs={3}><Name username={`${this.props.senderName}`} /></Grid>
+                            <Grid
+                                item xs={9}
+                                sx={{
+                                    background: `${misc2}`
+                                }}><Name username={this.props.senderName === "kunal" ? "kanav" : "kunal"} /></Grid>
+                        </Grid>
+                        <Grid
+                            container
+                            spacing={0}>
+                            <Grid item xs={3}>
+                                <FriendList />
+                            </Grid>
+                            <Grid item xs={9}>
+                                <ChatArea username={this.props.senderName} activeSocket={this.state.activeSocket} messages={this.state.messages} handleIncomingMessages={this.handleIncomingMessages} />
+                                <InputMessage activeSocket={this.state.activeSocket} handleIncomingMessages={this.handleIncomingMessages} />
+                            </Grid>
+                        </Grid>
+                    </Box>
                 </Grid>
-                <Grid
-                    container
-                    spacing={0}>
-                    <Grid item xs={3}>
-                        <FriendList />
-                    </Grid>
-                    <Grid item xs={9}>
-                        <ChatArea activeSocket={this.state.activeSocket} messages={this.state.messages} handleIncomingMessages={this.handleIncomingMessages} />
-                        <InputMessage activeSocket={this.state.activeSocket} handleIncomingMessages={this.handleIncomingMessages} />
-                    </Grid>
+                <Grid item xs={2}>
                 </Grid>
-            </Layout >
+            </Grid>
+
         )
     }
 }
