@@ -96,7 +96,7 @@ class App extends React.Component {
                             </Grid>
                             <Grid item xs={9}>
                                 <ChatArea username={this.props.senderName} activeSocket={this.state.activeSocket} messages={this.state.messages} handleIncomingMessages={this.handleIncomingMessages} />
-                                <InputMessage activeSocket={this.state.activeSocket} handleIncomingMessages={this.handleIncomingMessages} />
+                                <InputMessage username={this.props.senderName} activeSocket={this.state.activeSocket} handleIncomingMessages={this.handleIncomingMessages} />
                             </Grid>
                         </Grid>
                     </Box>

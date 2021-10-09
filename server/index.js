@@ -8,9 +8,9 @@ const io = require('socket.io')(http, {
 io.on('connection', (socket) => {
     console.log(`a user connected`);
 
-    socket.on('message', ({ sentBy, message }) => {
-        console.log(`${sentBy} said ${message}`);
-        // io.emit('message', `${socket.id.substr(0, 2)} said ${message}`);
+    socket.on('message', (messageObj) => {
+        //console.log(`${sentBy} said ${message}`);
+        io.emit('message', messageObj);
     });
 });
 
