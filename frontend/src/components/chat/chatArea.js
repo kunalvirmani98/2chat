@@ -4,9 +4,9 @@ import Button from "@mui/material/Button";
 import SendIcon from '@mui/icons-material/Send';
 import Avatar from "@mui/material/Avatar";
 import { Box, Typography, TextField } from "@mui/material";
-import { green } from "@mui/material/colors";
+import colorScheme from "../../constants/constant";
 
-const color = green['A200'];
+const color = colorScheme.primary;
 
 class ChatArea extends React.Component {
     constructor(props) {
@@ -57,16 +57,15 @@ class ChatArea extends React.Component {
                         padding: "0.2rem 0.5rem"
                     }}>
                         <Typography sx={{
-                            color: "white",
-                            backgroundColor: `${color}`,
+                            backgroundColor: `${messageObj.sentBy === this.props.username ? colorScheme.secondary : colorScheme.message}`,
                             borderRadius: "1rem",
                             minWidth: "10%",
                             maxWidth: "50%",
                             padding: "0.5rem",
                             display: "flex",
                             justifyContent: `${messageObj.sentBy === this.props.username ? "flex-start" : "flex-end"}`,
-                        }}><strong>{messageObj.message}
-                            </strong></Typography>
+                        }}>{messageObj.message}
+                        </Typography>
                     </Box>)
                 })}
             </Box>

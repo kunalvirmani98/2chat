@@ -7,6 +7,7 @@ import ChatArea from "../chat/chatArea";
 import InputMessage from "../chat/inputMessage";
 import FriendList from "../chat/friendList";
 import io from "socket.io-client";
+import colorScheme from "../../constants/constant";
 
 class App extends React.Component {
 
@@ -56,7 +57,6 @@ class App extends React.Component {
     }
 
     render() {
-        const misc2 = grey[50];
         return (
             <Grid
                 container
@@ -81,11 +81,16 @@ class App extends React.Component {
                         <Grid
                             container
                             spacing={0}>
-                            <Grid item xs={3}><Name username={`${this.props.senderName}`} /></Grid>
+                            <Grid
+                                item xs={3}
+                            //sx={{ background: `${colorScheme.primary}` }}
+                            >
+                                <Name username={`${this.props.senderName}`} />
+                            </Grid>
                             <Grid
                                 item xs={9}
                                 sx={{
-                                    background: `${misc2}`
+                                    background: `${colorScheme.primary}`
                                 }}><Name username={this.props.senderName === "kunal" ? "kanav" : "kunal"} /></Grid>
                         </Grid>
                         <Grid

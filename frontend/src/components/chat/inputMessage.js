@@ -4,9 +4,9 @@ import Button from "@mui/material/Button";
 import SendIcon from '@mui/icons-material/Send';
 import Avatar from "@mui/material/Avatar";
 import { Box, Typography, TextField } from "@mui/material";
-import { green } from "@mui/material/colors";
+import colorScheme from "../../constants/constant";
 
-const color = green['A200'];
+const color = colorScheme.primary;
 
 const CssTextField = styled(TextField)({
     '& label.Mui-focused': {
@@ -30,6 +30,15 @@ const CssTextField = styled(TextField)({
         },
     },
 });
+
+const ColorButton = styled(Button)(({ theme }) => ({
+    color: theme.palette.getContrastText(colorScheme.primary),
+    backgroundColor: colorScheme.primary,
+    color: "white",
+    '&:hover': {
+        backgroundColor: colorScheme.primary
+    },
+}));
 
 class InputMessage extends React.Component {
     constructor(props) {
@@ -72,15 +81,12 @@ class InputMessage extends React.Component {
                     onChange={this.handleInputMessage}
                     value={this.state.inputMessage}
                 />
-                <Button
-                    sx={{
-                        backgroundColor: `${green['A200']}`
-                    }}
+                <ColorButton
                     variant="contained"
                     onClick={this.sendMessage}
                     endIcon={<SendIcon />}>
                     Send
-                </Button>
+                </ColorButton>
             </Box>
         );
     }
