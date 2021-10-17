@@ -1,8 +1,6 @@
 import React from "react";
-import { Box, Grid } from "@mui/material";
-import { deepPurple, deepOrange, grey } from "@mui/material/colors";
+import { Box, Divider, Grid } from "@mui/material";
 import Name from "../name/name";
-import Layout from "../layout/layout";
 import ChatArea from "../chat/chatArea";
 import InputMessage from "../chat/inputMessage";
 import FriendList from "../chat/friendList";
@@ -60,12 +58,9 @@ class App extends React.Component {
         return (
             <Grid
                 container
-                //direction="row"
-                //justifyContent="center"
-                //alignItems="center"
                 spacing={1}
                 sx={{
-                    background: `${grey}`
+                    background: `${colorScheme.lightGrey}`
                 }}>
                 <Grid item xs={2}>
                 </Grid>
@@ -83,14 +78,14 @@ class App extends React.Component {
                             spacing={0}>
                             <Grid
                                 item xs={3}
-                            //sx={{ background: `${colorScheme.primary}` }}
+                                sx={{ background: `${colorScheme.grey}`, borderRight: "1px solid lightgrey" }}
                             >
                                 <Name username={`${this.props.senderName}`} />
                             </Grid>
                             <Grid
                                 item xs={9}
                                 sx={{
-                                    background: `${colorScheme.primary}`
+                                    background: `${colorScheme.grey}`
                                 }}><Name username={this.props.senderName === "kunal" ? "kanav" : "kunal"} /></Grid>
                         </Grid>
                         <Grid

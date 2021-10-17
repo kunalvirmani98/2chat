@@ -1,10 +1,8 @@
 import React from "react";
-import { styled } from '@mui/material/styles';
-import Button from "@mui/material/Button";
-import SendIcon from '@mui/icons-material/Send';
-import Avatar from "@mui/material/Avatar";
+import chatBg from "../../chat-bg-2.jpg";
 import { Box, Typography, TextField } from "@mui/material";
 import colorScheme from "../../constants/constant";
+
 
 const color = colorScheme.primary;
 
@@ -42,9 +40,12 @@ class ChatArea extends React.Component {
     render() {
         return (
             <Box sx={{
-                height: "65vh",
+                height: "70vh",
                 overflowY: "auto",
-                margin: "1rem",
+                padding: "1rem",
+                backgroundImage: `url(${chatBg})`,
+                backgroundRepeat: "round space",
+                marginBottom: "1rem"
             }} ref={this.myRef}>
                 {this.props.messages.map((messageObj) => {
                     return (<Box sx={{
@@ -53,11 +54,11 @@ class ChatArea extends React.Component {
                         position: "relative",
                         marginBottom: "1rem",
                         justifyContent: `${messageObj.sentBy === this.props.username ? "flex-start" : "flex-end"}`,
-                        width: "95%",
-                        padding: "0.2rem 0.5rem"
+                        width: "100%",
+                        //padding: "0.2rem 0.5rem"
                     }}>
                         <Typography sx={{
-                            backgroundColor: `${messageObj.sentBy === this.props.username ? colorScheme.secondary : colorScheme.message}`,
+                            backgroundColor: `${messageObj.sentBy === this.props.username ? colorScheme.secondary : "white"}`,
                             borderRadius: "1rem",
                             minWidth: "10%",
                             maxWidth: "50%",
